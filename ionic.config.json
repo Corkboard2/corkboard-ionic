@@ -1,0 +1,7 @@
+{
+  "name": "corkboard",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
