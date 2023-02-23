@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Restaurants
+      Find a Restaurant!
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,43 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Restaurants</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div *ngIf="!ratingsSubmitted">
+    <ion-card *ngFor="let dish of dishes; let i = index">
+      <ion-card-header>
+        <ion-card-title style="text-align:center;">
+          Rate The Dish
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <img [src]="'assets/dishes/' + dish" [alt]="dish">
+        <div style="text-align:center;">
+          <ion-icon name="star" size="large" (click)="rateDish(i, 1)" [ngStyle]="{'color':getStarColor(i, 1)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 2)"  [ngStyle]="{'color':getStarColor(i, 2)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 3)"  [ngStyle]="{'color':getStarColor(i, 3)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 4)" [ngStyle]="{'color':getStarColor(i, 4)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 5)" [ngStyle]="{'color':getStarColor(i, 5)}"></ion-icon>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div style="text-align:center;">
+      <ion-button size="large" (click)="submitRatings()" [disabled]="!allRated">
+        Submit Ratings
+      </ion-button>
+    </div>
+  </div>
+  <ion-card *ngIf="ratingsSubmitted">
+    <ion-card-header>
+      <ion-card-title style="text-align:center;">
+        Restaurant Suggestion
+      </ion-card-title>
+      <ion-card-subtitle>
+        Restaurant Name
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      Restaurant Information
+    </ion-card-content>
+  </ion-card>
 </ion-content>
