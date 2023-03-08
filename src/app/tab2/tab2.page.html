@@ -37,7 +37,7 @@
   </div>
   <ion-card *ngIf="ratingsSubmitted">
     <ion-card-header>
-      <ion-card-title style="text-align:center;">
+      <ion-card-title style="text-align:center;" (click)="this.getUsers()">
         Restaurant Suggestion
       </ion-card-title>
       <ion-card-subtitle>

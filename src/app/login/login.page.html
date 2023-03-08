@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Welcome to Corkboard
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="userFound">
+  <ion-item style="margin-top: 50%">
+    <ion-label class="ion-text-center" position="floating">Username</ion-label>
+    <ion-input type="text" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <div style="text-align:center; margin-top: 20px">
+    <ion-button size="medium" (click)="login()">
+      Login
+    </ion-button>
+  </div>
+</ion-content>
+<ion-content *ngIf="!userFound">
+  <ion-item style="margin-top: 50%">
+    <ion-label class="ion-text-center" position="floating">Username</ion-label>
+    <ion-input type="text" [(ngModel)]="username"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="ion-text-center" position="floating">First Name</ion-label>
+    <ion-input type="text" [(ngModel)]="first_name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="ion-text-center" position="floating">Last Name</ion-label>
+    <ion-input type="text" [(ngModel)]="last_name"></ion-input>
+  </ion-item>
+  <div style="text-align:center; margin-top: 20px">
+    <ion-button size="medium" (click)="create_account()">
+      Create Account
+    </ion-button>
+  </div>
+</ion-content>

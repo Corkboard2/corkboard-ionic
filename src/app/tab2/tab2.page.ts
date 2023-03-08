@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-tab2',
@@ -10,7 +11,7 @@ export class Tab2Page {
   ratings: number[] = [0, 0, 0, 0 ,0];
   dishes = ['mexican_dish.jpeg', 'greek_dish.avif', 'pizza_dish.webp', 'salad_dish.webp', 'sandwich_dish.webp']
   allRated = false;
-  constructor() {
+  constructor(public http: HttpClient) {
   }
   ngOnInit() {
   }
@@ -32,5 +33,10 @@ export class Tab2Page {
   }
   submitRatings() {
     this.ratingsSubmitted = true;
+  }
+  getUsers() {
+    this.http.get<any[]>("http://localhost:8000/corkboard/users").subscribe(data => {
+      console.log(data);
+    })
   }
 }
