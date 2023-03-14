@@ -36,16 +36,42 @@
     </div>
   </div>
   <ion-card *ngIf="ratingsSubmitted">
-    <ion-card-header>
-      <ion-card-title style="text-align:center;" (click)="this.getUsers()">
-        Restaurant Suggestion
-      </ion-card-title>
-      <ion-card-subtitle>
-        Restaurant Name
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      Restaurant Information
-    </ion-card-content>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="text-align:center;">
+          <div>
+            {{this.suggestions[current_suggestion].name}}
+          </div>
+        </ion-card-title>
+        <ion-card-subtitle>
+          <div style="text-align: center">
+            {{this.suggestions[current_suggestion].editorial_summary ? this.suggestions[current_suggestion].editorial_summary.overview : ""}}
+          </div>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <div style="text-align: center">
+          <img [src]="this.suggestions[current_suggestion].picture_url" width="300">
+        </div>
+        <div>
+          <h5>Rating: {{this.suggestions[current_suggestion].rating}}</h5>
+          <div>
+            <h5 style="display: inline-block">Address: </h5>
+            <h5 style="display: inline-block"><a [href]="this.suggestions[current_suggestion].url">{{this.suggestions[current_suggestion].formatted_address}}</a></h5>
+          </div>
+          <h5>Price Level: {{this.suggestions[current_suggestion].price_level}}</h5>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    <div style="text-align:center;">
+      <ion-button size="large" (click)="nextSuggestion()" [disabled]="current_suggestion >= suggestions.length">
+        Next Suggestion
+      </ion-button>
+    </div>
+    <div style="text-align:center; margin-top: 10px; margin-bottom: 10px;">
+      <ion-button color=warning size="large" (click)="submitNewRatings()">
+        Submit New Ratings
+      </ion-button>
+    </div>
   </ion-card>
 </ion-content>
