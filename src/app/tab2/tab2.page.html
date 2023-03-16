@@ -21,16 +21,22 @@
       <ion-card-content>
         <img [src]="'assets/dishes/' + dish" [alt]="dish">
         <div style="text-align:center;">
-          <ion-icon name="star" size="large" (click)="rateDish(i, 1)" [ngStyle]="{'color':getStarColor(i, 1)}"></ion-icon>
-          <ion-icon name="star" size="large" (click)="rateDish(i, 2)"  [ngStyle]="{'color':getStarColor(i, 2)}"></ion-icon>
-          <ion-icon name="star" size="large" (click)="rateDish(i, 3)"  [ngStyle]="{'color':getStarColor(i, 3)}"></ion-icon>
-          <ion-icon name="star" size="large" (click)="rateDish(i, 4)" [ngStyle]="{'color':getStarColor(i, 4)}"></ion-icon>
-          <ion-icon name="star" size="large" (click)="rateDish(i, 5)" [ngStyle]="{'color':getStarColor(i, 5)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 1)"
+                    [ngStyle]="{'color':getStarColor(i, 1)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 2)"
+                    [ngStyle]="{'color':getStarColor(i, 2)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 3)"
+                    [ngStyle]="{'color':getStarColor(i, 3)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 4)"
+                    [ngStyle]="{'color':getStarColor(i, 4)}"></ion-icon>
+          <ion-icon name="star" size="large" (click)="rateDish(i, 5)"
+                    [ngStyle]="{'color':getStarColor(i, 5)}"></ion-icon>
         </div>
       </ion-card-content>
     </ion-card>
     <div style="text-align:center;">
-      <ion-button size="large" (click)="submitRatings()" [disabled]="!allRated">
+      <!--[disabled]="!allRated"-->
+      <ion-button size="large" (click)="submitRatings()" >
         Submit Ratings
       </ion-button>
     </div>
@@ -57,12 +63,22 @@
           <h5>Rating: {{this.suggestions[current_suggestion].rating}}</h5>
           <div>
             <h5 style="display: inline-block">Address: </h5>
-            <h5 style="display: inline-block"><a [href]="this.suggestions[current_suggestion].url">{{this.suggestions[current_suggestion].formatted_address}}</a></h5>
+            <h5 style="display: inline-block"><a
+              [href]="this.suggestions[current_suggestion].url">{{this.suggestions[current_suggestion].formatted_address}}</a>
+            </h5>
           </div>
           <h5>Price Level: {{this.suggestions[current_suggestion].price_level}}</h5>
         </div>
       </ion-card-content>
     </ion-card>
+    <div style="text-align:center;" *ngIf="current_suggestion === 0">
+      <h2>Rate the suggestion</h2>
+      <ion-icon name="star" size="large" (click)="suggestion_rating = 1" [ngStyle]="{'color':suggestionStarColor(1)}"></ion-icon>
+      <ion-icon name="star" size="large" (click)="suggestion_rating = 2" [ngStyle]="{'color':suggestionStarColor(2)}"></ion-icon>
+      <ion-icon name="star" size="large" (click)="suggestion_rating = 3" [ngStyle]="{'color':suggestionStarColor(3)}"></ion-icon>
+      <ion-icon name="star" size="large" (click)="suggestion_rating = 4" [ngStyle]="{'color':suggestionStarColor(4)}"></ion-icon>
+      <ion-icon name="star" size="large" (click)="suggestion_rating = 5" [ngStyle]="{'color':suggestionStarColor(5)}"></ion-icon>
+    </div>
     <div style="text-align:center;">
       <ion-button size="large" (click)="nextSuggestion()" [disabled]="current_suggestion >= suggestions.length">
         Next Suggestion

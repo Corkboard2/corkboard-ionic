@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../services/auth.service";
 import {Geolocation} from "@capacitor/geolocation";
 import {ActivatedRoute, Router} from "@angular/router";
+import {updateCacheConfig} from "@angular/cli/src/commands/cache/utilities";
 
 @Component({
   selector: 'app-tab2',
@@ -17,6 +18,7 @@ export class Tab2Page {
   user: any;
   suggestions: any = null;
   current_suggestion: number = 0;
+  suggestion_rating = 0;
 
   constructor(public http: HttpClient, public authService: AuthService, private router: Router, private route: ActivatedRoute) {
   }
@@ -47,6 +49,14 @@ export class Tab2Page {
     return "grey"
   }
 
+  suggestionStarColor(star_number: number) {
+    if(star_number <= this.suggestion_rating) {
+      return "yellow"
+    }
+    return "grey"
+  }
+
+
   submitRatings() {
     this.user = this.authService.getUser();
     this.current_suggestion = 0;
@@ -66,7 +76,7 @@ export class Tab2Page {
             this.ratingsSubmitted = true;
             console.log(restaurants);
             this.suggestions = restaurants;
-        })
+          })
       }, (error) => {
         console.log(error);
       })
@@ -74,10 +84,27 @@ export class Tab2Page {
   }
 
   nextSuggestion() {
+    if(this.current_suggestion == 0) {
+      this.updateSuggestionRating();
+    }
     this.current_suggestion += 1;
   }
 
   submitNewRatings() {
     this.ratingsSubmitted = false;
+    if(this.current_suggestion == 0) {
+      this.updateSuggestionRating();
+    }
   }
+
+  updateSuggestionRating() {
+    let data = {
+      'restaurant_name': this.suggestions[0].name,
+      'rating': this.suggestion_rating
+    }
+    this.http.get(`http://localhost:8000/corkboard/users/${this.user.id}/restaurants/${this.suggestions[0].name.toLowerCase()}/rating/${this.suggestion_rating}/update`).subscribe((r)=> {
+      console.log(r);
+    })
+  }
+
 }
