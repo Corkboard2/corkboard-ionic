@@ -35,4 +35,11 @@ export class Tab1Page {
     }
     return "grey"
   }
+  refresh() {
+    this.http.get(`http://localhost:8000/corkboard/users/${this.user.id}/restaurants`).subscribe((restaurants)=> {
+      console.log(restaurants)
+      this.restaurants = restaurants
+      console.log(this.restaurants)
+    })
+  }
 }

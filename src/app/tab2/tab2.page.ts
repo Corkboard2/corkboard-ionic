@@ -4,6 +4,7 @@ import {AuthService} from "../services/auth.service";
 import {Geolocation} from "@capacitor/geolocation";
 import {ActivatedRoute, Router} from "@angular/router";
 import {updateCacheConfig} from "@angular/cli/src/commands/cache/utilities";
+import {LoadingController} from "@ionic/angular";
 
 @Component({
   selector: 'app-tab2',
@@ -20,7 +21,7 @@ export class Tab2Page {
   current_suggestion: number = 0;
   suggestion_rating = 0;
 
-  constructor(public http: HttpClient, public authService: AuthService, private router: Router, private route: ActivatedRoute) {
+  constructor(private loadingCtrl: LoadingController, private http: HttpClient, public authService: AuthService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -98,6 +99,7 @@ export class Tab2Page {
   }
 
   updateSuggestionRating() {
+    this.suggestion_rating = 0;
     let data = {
       'restaurant_name': this.suggestions[0].name,
       'rating': this.suggestion_rating
@@ -106,5 +108,4 @@ export class Tab2Page {
       console.log(r);
     })
   }
-
 }
