@@ -47,5 +47,8 @@ export class AuthService {
   updateUser(user: any) {
     this.user = user;
   }
+  logout() {
+    this.user = null;
+  }
 
 }

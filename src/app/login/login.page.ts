@@ -33,8 +33,10 @@ export class LoginPage {
           this.router.navigate(['../tabs'], {relativeTo: this.route});
         }
       })
-      console.log("creating account for", this.username)
-      this.userFound = false;
+      if(!this.userFound) {
+        console.log("creating account for", this.username)
+        this.userFound = false;
+      }
     })
   }
   create_account() {
@@ -51,6 +53,7 @@ export class LoginPage {
     }
     this.http.post('http://localhost:8000/corkboard/users/', data).subscribe((r)=>{
       console.log(r)
+      this.username = "";
       this.router.navigate(['../tabs'], {relativeTo: this.route});
     })
   }

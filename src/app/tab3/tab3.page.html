@@ -1,17 +1,61 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Profile
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
+    <ion-title size="large">{{user.first_name + " " + user.last_name}}</ion-title>
   </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{user.first_name + " " + user.last_name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <h5 style="display: inline-block; margin-left: 3px">{{"  " + user.username}}</h5>
+      </div>
+      <ion-list>
+        <ion-item>
+          <div>
+            <h5 style="display: inline-block">Mexican Food: </h5>
+            <h5 style="display: inline-block; margin-left: 3px">{{user.first_dish}}</h5>
+          </div>
+          </ion-item>
+        <ion-item>
+          <div>
+            <h5 style="display: inline-block">Mediterranean Food: </h5>
+            <h5 style="display: inline-block; margin-left: 3px">{{user.second_dish}}</h5>
+          </div>
+        </ion-item>
+        <ion-item>
+          <div>
+            <h5 style="display: inline-block">Pizza: </h5>
+            <h5 style="display: inline-block; margin-left: 3px">{{user.third_dish}}</h5>
+          </div>
+        </ion-item>
+        <ion-item>
+          <div>
+            <h5 style="display: inline-block">Salad: </h5>
+            <h5 style="display: inline-block; margin-left: 3px">{{user.fourth_dish}}</h5>
+          </div>
+        </ion-item>
+        <ion-item>
+          <div>
+            <h5 style="display: inline-block">Sandwich: </h5>
+            <h5 style="display: inline-block; margin-left: 3px">{{user.fifth_dish}}</h5>
+          </div>
+        </ion-item>
+      </ion-list>
+      <div style="text-align:center;">
+        <ion-button size="medium" color="danger" (click)="logout()">
+          Logout
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>
